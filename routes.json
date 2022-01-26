@@ -1,0 +1,40 @@
+{
+    "routes": [
+        {
+            "route": "/.auth/login/github",         <- Disable Github login
+            "statusCode": "401"
+        },
+        {
+            "route": "/.auth/login/twitter",        <- Disable Twitter login
+            "statusCode": "401"
+        },
+        {
+            "route": "/.auth/login/facebook",       <- Disable Facebook login
+            "statusCode": "401"
+        },
+        {
+            "route": "/.auth/login/google",         <- Disable Google login
+            "statusCode": "401"
+        },
+        {
+            "route": "/login",                      <- Redirect /login to Azure AD login 
+            "redirect": "/.auth/login/aad"
+        },
+        {
+            "route": "/logout",                     <- Redirect /logout to logout url
+            "redirect": "/.auth/logout",
+        },
+        {
+            "route": "/",                           <- Allow anonymous access to the top level url
+            "allowedRoles": ["anonymous"]
+        },
+        {
+            "route": "/authenticated",              <- Limit /authenticated access to only users that have been authenticated (logged in with Azure AD)
+            "allowedRoles": ["authenticated"]
+        },
+        {
+            "route": "/reader_role",                <- Limit /reader_role access to only users that have been assigned the role "reader" or "contributer
+            "allowedRoles": ["reader", "contributer"]
+        }
+    ]
+}
