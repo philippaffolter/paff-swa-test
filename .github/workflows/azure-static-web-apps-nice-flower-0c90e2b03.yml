@@ -18,6 +18,32 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
+      
+      # Adding custom build steps here
+      
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+          
+      - name: Cache virtual environment
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-poetry-packages
+        with:
+          path: ~/.cache/pypoetry
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/poetry.lock') }}
+          
+      - name: Build install poetry
+        run: |
+          curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+          echo "$HOME/.poetry/bin" >> $GITHUB_PATH
+          
+      - name: Build docs
+        run: |
+          poetry install
+          poetry run sphinx-build -b html docs/source/sphinx-example docs/build/sphinx-example
+      # -------------------------
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
