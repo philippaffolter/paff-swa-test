@@ -6,8 +6,8 @@ site_url:         'https://brave-tree-035ee0c03.azurestaticapps.net/'
 
 
 # Repository, edit to point to appropriate repo
-repo_name: 'equinor/az-static-web-app-docs-template'
-repo_url:  'https://github.com/equinor/az-static-web-app-docs-template'
+repo_name: 'philippaffolter/paff-swa-test'
+repo_url:  'https://github.com/philippaffolter/paff-swa-test'
 edit_uri:  'edit/master/docs/source/equinor-example'
 
 # Copyright, do not edit
